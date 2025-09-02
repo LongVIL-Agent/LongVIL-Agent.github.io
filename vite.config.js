@@ -14,5 +14,6 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
   ],
-  base: '/LongVIL/',
+  // base: '/LongVIL/',
+  base: '/',
 })
