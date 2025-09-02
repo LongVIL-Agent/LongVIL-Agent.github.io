@@ -15,13 +15,49 @@
 
 
       <div class="author-list">
-        <span class="author">
+        <!-- <span class="author">
           <el-link href="https://zmling22.github.io/">Quan Chen</el-link>
           <span class="ind">1 &#9733;</span>,
         </span>
         <span class="author">
           <el-link href="https://zhigao2017.github.io/">Zhi Gao</el-link>
           <span class="ind">1 &#9733;</span>
+        </span> -->
+        <span class="author">
+          <el-link>Quan Chen</el-link>
+          <span class="ind">1,2 &#9733;</span>,
+        </span>
+        <span class="author">
+          <el-link>Chenrui Shi</el-link>
+          <span class="ind">1 &#9733;</span>,
+        </span>
+        <span class="author">
+          <el-link>Qi Chen</el-link>
+          <span class="ind">1,2</span>,
+        </span>
+        <span class="author">
+          <el-link>Yuwei Wu</el-link>
+          <span class="ind">1</span>,
+        </span>
+        <span class="author">
+          <el-link>Zhi Gao</el-link>
+          <span class="ind">1 </span>,
+        </span>
+        <span class="author">
+          <el-link>Xintong Zhang</el-link>
+          <span class="ind">1 </span>,
+        </span>
+        <span class="author">
+          <el-link>Rui Gao</el-link>
+          <span class="ind">1,2 </span>,
+        </span>
+        <span class="author">
+          <el-link>Kun Wu</el-link>
+          <span class="ind">3 </span>,
+        </span>
+        <span class="author">
+          <el-link>Yunde Jia</el-link>
+          <span class="ind">2 </span>
         </span>
         <!-- <span class="author">
           <el-link href="https://wu-yuwei-bit.github.io/">Yuwei Wu</el-link>
@@ -36,12 +72,17 @@
       <div class="author-list">
         <span class="org">
           <span class="ind">1</span>
-          Beijing Institute of Technology
+          Beijing Key Laboratory of Intelligent Information Technology, School of Computer Science and Technology, Beijing Institute of Technology
         </span>
         <br>
         <span class="org">
           <span class="ind">2</span>
-          Shenzhen MSU-BIT University
+          Guangdong Laboratory of Machine Perception and Intelligent Computing, Shenzhen MSU-BIT University
+        </span>
+        <br>
+        <span class="org">
+          <span class="ind">3</span>
+          Beijing Innovation Center of Humanoid Robotics
         </span>
       </div>
 
@@ -76,6 +117,12 @@
           <span>Data</span>
         </a>
       </span>
+      <div class="link-buttons">
+
+        
+  <!-- arXiv -->
+ 
+</div>
 
       <!-- <span class="link-block">
         <a href="file/clova_cvpr24_poster.pdf"
@@ -348,12 +395,14 @@
   </el-table-column>
 </el-table>
 
+  
+
 
 
   <!-- 3) 不同视觉条件（Clean / Complex, Total） -->
   <div class="subsection-title">Results under Visual Conditions</div>
   <div class="intro">All methods drop under complex visuals; LongVIL keeps the highest scores across metrics.</div>
-  <el-table :data="condRows" border stripe class="result-table">
+  <!-- <el-table :data="condRows" border stripe class="result-table">
     <el-table-column prop="method" label="Method" width="240"></el-table-column>
     <el-table-column prop="clean_ema" label="Clean · EMA"></el-table-column>
     <el-table-column prop="clean_fsa" label="Clean · FSA"></el-table-column>
@@ -361,20 +410,89 @@
     <el-table-column prop="complex_ema" label="Complex · EMA"></el-table-column>
     <el-table-column prop="complex_fsa" label="Complex · FSA"></el-table-column>
     <el-table-column prop="complex_sms" label="Complex · SMS"></el-table-column>
-  </el-table>
+  </el-table> -->
+
+  <el-table :data="condRows" border stripe class="result-table">
+  <el-table-column prop="method" label="Method" width="240"></el-table-column>
+
+  <el-table-column label="Clean · EMA">
+    <template #default="{ row }">
+      <span :class="{ best: isBest(row.clean_ema, maxCond.clean_ema) }">{{ fmt(row.clean_ema) }}</span>
+    </template>
+  </el-table-column>
+
+  <el-table-column label="Clean · FSA">
+    <template #default="{ row }">
+      <span :class="{ best: isBest(row.clean_fsa, maxCond.clean_fsa) }">{{ fmt(row.clean_fsa) }}</span>
+    </template>
+  </el-table-column>
+
+  <el-table-column label="Clean · SMS">
+    <template #default="{ row }">
+      <span :class="{ best: isBest(row.clean_sms, maxCond.clean_sms) }">{{ fmt(row.clean_sms) }}</span>
+    </template>
+  </el-table-column>
+
+  <el-table-column label="Complex · EMA">
+    <template #default="{ row }">
+      <span :class="{ best: isBest(row.complex_ema, maxCond.complex_ema) }">{{ fmt(row.complex_ema) }}</span>
+    </template>
+  </el-table-column>
+
+  <el-table-column label="Complex · FSA">
+    <template #default="{ row }">
+      <span :class="{ best: isBest(row.complex_fsa, maxCond.complex_fsa) }">{{ fmt(row.complex_fsa) }}</span>
+    </template>
+  </el-table-column>
+
+  <el-table-column label="Complex · SMS">
+    <template #default="{ row }">
+      <span :class="{ best: isBest(row.complex_sms, maxCond.complex_sms) }">{{ fmt(row.complex_sms) }}</span>
+    </template>
+  </el-table-column>
+</el-table>
+
 
   <!-- 4) 消融实验（Total 列） -->
   <div class="subsection-title">Ablation Study (Total)</div>
   <div class="intro">
     Visual reflection improves temporal/spatial alignment; code reflection improves execution consistency — combining both gives the best performance.
   </div>
-  <el-table :data="ablationRows" border stripe class="result-table">
+  <!-- <el-table :data="ablationRows" border stripe class="result-table">
     <el-table-column prop="variant" label="Variant" width="300"></el-table-column>
     <el-table-column prop="ema" label="EMA ↑" width="140"></el-table-column>
     <el-table-column prop="fsa" label="FSA ↑" width="140"></el-table-column>
     <el-table-column prop="sms" label="SMS ↑" width="140"></el-table-column>
     <el-table-column prop="delta" label="Δ vs. Base"></el-table-column>
-  </el-table>
+  </el-table> -->
+
+  <el-table :data="ablationRows" border stripe class="result-table">
+  <el-table-column prop="variant" label="Variant" width="300"></el-table-column>
+
+  <el-table-column label="EMA ↑" width="140">
+    <template #default="{ row }">
+      <span :class="{ best: isBest(row.ema, maxAbl.ema) }">{{ fmt(row.ema) }}</span>
+    </template>
+  </el-table-column>
+
+  <el-table-column label="FSA ↑" width="140">
+    <template #default="{ row }">
+      <span :class="{ best: isBest(row.fsa, maxAbl.fsa) }">{{ fmt(row.fsa) }}</span>
+    </template>
+  </el-table-column>
+
+  <el-table-column label="SMS ↑" width="140">
+    <template #default="{ row }">
+      <span :class="{ best: isBest(row.sms, maxAbl.sms) }">{{ fmt(row.sms) }}</span>
+    </template>
+  </el-table-column>
+
+  <el-table-column prop="delta" label="Δ vs. Base"></el-table-column>
+</el-table>
+
+
+
+
 
   <!-- 5) 合并演示视频（放在最后） -->
   <!-- <div class="subsection-title">Representative Video</div>
@@ -520,42 +638,43 @@ const currentVideo = computed(() => {
 // —— 合并表数据（Table 2）
 const mergedRows = [
   { method: 'GPTforRobots-GPT-4o',
-    l1_ema: 0.34, l1_fsa: 0.34, l1_sms: 0.62,
-    l2_ema: 0.14, l2_fsa: 0.14, l2_sms: 0.54,
-    l3_ema: 0.15, l3_fsa: 0.15, l3_sms: 0.56,
-    t_ema: 0.21,  t_fsa: 0.21,  t_sms: 0.58,
+    l1_ema: 0.34, l1_fsa: 0.34, l1_sms: 0.8050,
+    l2_ema: 0.14, l2_fsa: 0.14, l2_sms: 0.4803,
+    l3_ema: 0.15, l3_fsa: 0.15, l3_sms: 0.4324,
+    t_ema: 0.21,  t_fsa: 0.21,  t_sms: 0.5760,
   },
   { method: 'SeeDo-GPT-4o',
-    l1_ema: 0.35, l1_fsa: 0.35, l1_sms: 0.42,
-    l2_ema: 0.06, l2_fsa: 0.06, l2_sms: 0.23,
-    l3_ema: 0.00, l3_fsa: 0.00, l3_sms: 0.19,
-    t_ema: 0.14,  t_fsa: 0.14,  t_sms: 0.29,
+    l1_ema: 0.35, l1_fsa: 0.35, l1_sms: 0.5425,
+    l2_ema: 0.06, l2_fsa: 0.06, l2_sms: 0.2198,
+    l3_ema: 0.00, l3_fsa: 0.00, l3_sms: 0.1132,
+    t_ema: 0.14,  t_fsa: 0.14,  t_sms: 0.2919,
   },
   { method: 'Ours-Base-Qwen',
-    l1_ema: 0.68, l1_fsa: 0.68, l1_sms: 0.79,
-    l2_ema: 0.28, l2_fsa: 0.28, l2_sms: 0.61,
-    l3_ema: 0.12, l3_fsa: 0.12, l3_sms: 0.52,
-    t_ema: 0.36,  t_fsa: 0.36,  t_sms: 0.61,
+    l1_ema: 0.68, l1_fsa: 0.68, l1_sms: 0.8185,
+    l2_ema: 0.28, l2_fsa: 0.28, l2_sms: 0.5660,
+    l3_ema: 0.12, l3_fsa: 0.12, l3_sms: 0.4649,
+    t_ema: 0.36,  t_fsa: 0.36,  t_sms: 0.6063,
   },
   { method: 'Ours-Reflection-Qwen',
-    l1_ema: 0.73, l1_fsa: 0.73, l1_sms: 0.85,
-    l2_ema: 0.30, l2_fsa: 0.30, l2_sms: 0.64,
-    l3_ema: 0.17, l3_fsa: 0.17, l3_sms: 0.57,
-    t_ema: 0.40,  t_fsa: 0.40,  t_sms: 0.63,
+    l1_ema: 0.73, l1_fsa: 0.73, l1_sms: 0.8660,
+    l2_ema: 0.30, l2_fsa: 0.30, l2_sms: 0.5380,
+    l3_ema: 0.17, l3_fsa: 0.17, l3_sms: 0.4904,
+    t_ema: 0.40,  t_fsa: 0.40,  t_sms: 0.6348,
   },
   { method: 'Ours-Base-GPT-4o',
-    l1_ema: 0.76, l1_fsa: 0.76, l1_sms: 0.84,
-    l2_ema: 0.34, l2_fsa: 0.34, l2_sms: 0.63,
-    l3_ema: 0.19, l3_fsa: 0.19, l3_sms: 0.56,
-    t_ema: 0.43,  t_fsa: 0.43,  t_sms: 0.62,
+    l1_ema: 0.76, l1_fsa: 0.76, l1_sms: 0.8700,
+    l2_ema: 0.34, l2_fsa: 0.34, l2_sms: 0.5635,
+    l3_ema: 0.19, l3_fsa: 0.19, l3_sms: 0.4217,
+    t_ema: 0.43,  t_fsa: 0.43,  t_sms: 0.6184,
   },
   { method: 'Ours-Reflection-GPT-4o',
-    l1_ema: 0.81, l1_fsa: 0.81, l1_sms: 0.84,
-    l2_ema: 0.40, l2_fsa: 0.40, l2_sms: 0.67,
-    l3_ema: 0.25, l3_fsa: 0.25, l3_sms: 0.58,
-    t_ema: 0.49,  t_fsa: 0.49,  t_sms: 0.66,
+    l1_ema: 0.81, l1_fsa: 0.81, l1_sms: 0.9000,
+    l2_ema: 0.40, l2_fsa: 0.40, l2_sms: 0.6183,
+    l3_ema: 0.25, l3_fsa: 0.26, l3_sms: 0.4649,  // L3 FSA 修正为 0.26
+    t_ema: 0.4867, t_fsa: 0.49, t_sms: 0.6611,
   },
-]
+];
+
 
 // 计算每列的最大值，用于加粗
 const maxVals = {
@@ -594,6 +713,26 @@ const ablationRows = [
   { variant: 'C · +Rv (Visual Reflection)',     ema: 0.4667, fsa: 0.47,   sms: 0.6486, delta: '+0.0367 / +0.04 / +0.0302' }, // :contentReference[oaicite:27]{index=27}
   { variant: 'D · +Rc (Code Reflection, Full)', ema: 0.4867, fsa: 0.49,   sms: 0.6611, delta: '+0.0567 / +0.06 / +0.0427' }, // :contentReference[oaicite:28]{index=28}
 ]
+
+// 高亮判断（容差避免浮点误差）
+const isBest = (v, max, eps = 1e-9) => Math.abs(Number(v) - Number(max)) < eps
+
+// Visual Conditions：各列最大值
+const maxCond = {
+  clean_ema:   Math.max(...condRows.map(r => r.clean_ema)),
+  clean_fsa:   Math.max(...condRows.map(r => r.clean_fsa)),
+  clean_sms:   Math.max(...condRows.map(r => r.clean_sms)),
+  complex_ema: Math.max(...condRows.map(r => r.complex_ema)),
+  complex_fsa: Math.max(...condRows.map(r => r.complex_fsa)),
+  complex_sms: Math.max(...condRows.map(r => r.complex_sms)),
+}
+
+// Ablation：各指标最大值
+const maxAbl = {
+  ema: Math.max(...ablationRows.map(r => r.ema)),
+  fsa: Math.max(...ablationRows.map(r => r.fsa)),
+  sms: Math.max(...ablationRows.map(r => r.sms)),
+}
 
 
 </script>
@@ -819,6 +958,45 @@ code {
   outline: none;
 }
 
+
+
+
+/* —— 统一顶部按钮尺寸，仅影响 .external-link —— */
+/* 让三颗按钮一条线对齐、居中 */
+.link-block {
+  display: inline-block;
+  vertical-align: middle;    /* 避免基线不一致 */
+  margin: 4px 10px;          /* 横向间距可按需调 */
+}
+
+/* 按钮内部用 flex 居中，去掉由 margin 造成的不均匀 */
+.external-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;                 /* 统一图标与文字间距 */
+  line-height: 1;            /* 防止行高把内容顶偏 */
+}
+
+/* 固定“图标框”的宽高，让三颗按钮里的文字起点一致 */
+.external-link .icon,
+.external-link .fa,          /* Font Awesome 基类 */
+.external-link .fas,         /* FA 5 solid */
+.external-link .fab,         /* FA 5 brand (GitHub) */
+.external-link svg {
+  width: 28px;               /* 图标占位宽度，可改 24/32 */
+  height: 28px;
+  flex: 0 0 28px;            /* 不拉伸不压缩 */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* 去掉你原本给 .icon 的右外边距，统一用 gap 控制 */
+.external-link .icon { margin-right: 0 !important; }
+
+/* 防止 arXiv 的 SVG 以文本基线对齐导致“下沉” */
+.external-link svg { vertical-align: middle; }
 
 
 </style>
