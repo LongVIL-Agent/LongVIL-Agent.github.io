@@ -43,6 +43,7 @@
           <el-link>Zhi Gao</el-link>
           <span class="ind">1 </span>,
         </span>
+        <br>
         <span class="author">
           <el-link>Xintong Zhang</el-link>
           <span class="ind">1 </span>,
