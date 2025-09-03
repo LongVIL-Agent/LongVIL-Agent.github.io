@@ -152,11 +152,11 @@
         boosting performance by 19.8% on MT-HM3D from baseline model.</p>
     </div> -->
 
-    <div class="section">
+    <!-- <div class="section">
       <el-card class="teaser">
         <el-image src="./logo.png" style="width: 300px; height: auto;"></el-image>
       </el-card>
-    </div>
+    </div> -->
 
     <div class="section">
     <div class="section-title">Abstract</div>
