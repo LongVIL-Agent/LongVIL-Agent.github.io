@@ -88,7 +88,7 @@
       </div>
 
       <span class="link-block">
-        <a href="https://arxiv.org/pdf/2505.13948" class="external-link button is-normal is-rounded is-dark">
+        <a href="https://arxiv.org/abs/2509.05368" class="external-link button is-normal is-rounded is-dark">
           <span class="icon">
             <svg xmlns="http://www.w3.org/2000/svg" width="1.0em" height="1.0em" viewBox="0 0 24 24">
               <path fill="currentColor"
@@ -99,7 +99,7 @@
         </a>
       </span>
       <span class="link-block">
-        <a href="https://github.com/memory-eqa/MemoryEQA" class="external-link button is-normal is-rounded is-dark">
+        <a href="https://github.com/chenquan2002/LongVIL" class="external-link button is-normal is-rounded is-dark">
           <span class="icon">
             <i class="fab fa-github"></i>
           </span>
@@ -110,7 +110,7 @@
       <!-- Data Link. need changing -->
       <span class="link-block">
 
-        <a target="_blank" href="https://huggingface.co/datasets/zmling/MT-HM3D"
+        <a target="_blank" href="https://huggingface.co/datasets/cq838/LongVILBench"
           class="external-link button is-normal is-rounded is-dark">
           <span class="icon">
             <i class="fa fa-database"></i>
