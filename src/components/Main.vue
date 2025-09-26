@@ -539,9 +539,9 @@
       <div class="bibtex-container">
         <pre><code class="language-bibtex">
     @inproceedings{gao2025multi,
-      title={Memory-Centric Embodied Question Answering},
-      author={Zhai, Mingliang and Gao, Zhi and Wu, Yuwei and Jia, Yunde},
-      booktitle={arXiv preprint arXiv:2505.13948}
+      title={Long-Horizon Visual Imitation Learning via Plan and Code Reflection},
+      author={Quan Chen and Chenrui Shi and Qi Chen and Yuwei Wu and Zhi Gao and Xintong Zhang and Rui Gao and Kun Wu and Yunde Jia},
+      booktitle={arXiv preprint arXiv:2509.05368}
     }
 </code></pre>
       </div>
