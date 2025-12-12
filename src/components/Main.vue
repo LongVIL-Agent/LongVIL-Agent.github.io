@@ -211,7 +211,7 @@
 
     <el-card class="teaser" style="max-width:700px; margin:20px auto;">
       <el-image src="./stats.png"></el-image>
-      <p style="text-align:center; font-size:0.9em; color:#666;">(a) Direction distribution, (b) Object distribution, (c) Action distribution, (d) Task length vs. video duration.</p>
+      <p style="text-align:center; font-size:0.9em; color:#666;">(a) Direction distribution, (b) Object distribution, (c) Action distribution, (d) KDE Plot of Video Duration per Task Level.</p>
     </el-card>
 
     <p><b>Evaluation metrics.</b> We report <b>EMA</b> (exact sequence match), <b>FSA</b> (final state correctness of the environment), and <b>SMS</b> (prefix length ratio measuring how far a method proceeds correctly before deviating). These jointly assess sequence fidelity, goal attainment, and step-wise robustness for long-horizon execution.</p>
@@ -242,7 +242,7 @@
     <el-card class="teaser" style="max-width:700px; margin:20px auto;">
       <el-image src="./stats.png"></el-image>
       <p style="text-align:center; font-size:0.9em; color:#666;">
-        (a) Direction distribution, (b) Object distribution, (c) Action distribution, (d) Task length vs. video duration.
+        (a) Direction distribution, (b) Object distribution, (c) Action distribution, (d) KDE Plot of Video Duration per Task Level.
       </p>
     </el-card>
 
